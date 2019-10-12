@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Hello from './Hello';
+import CardList from './CardList';
 import * as serviceWorker from './serviceWorker';
 import 'tachyons';
+import { robots }  from './robots'; //This is using destructuring to destructure props. I need to learn destructuring.
 
-ReactDOM.render(<Hello greeting={'Hello' + 'Ract Ninja'} />, document.getElementById('root'));
+ReactDOM.render(
+                <CardList robots={robots}/>
+, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
