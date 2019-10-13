@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CardList from './CardList';
 import SearchBox from './SearchBox';
 import { robots }  from './robots'; //This is using destructuring to destructure props. I need to learn destructuring.
+import './App.css';
 
 class App extends Component {
     constructor() {
@@ -24,7 +25,7 @@ class App extends Component {
         }) 
         return (
             <div className='tc'>
-                <h1>RoboFriends</h1>
+                <h1 className='f2'>RoboFriends</h1> {/*className uses tachyons*/}
                 <SearchBox searchChange={this.onSearchChange}/> {/*onSearchChange function is passed as a prop to the SeachBox component*/}
                 <CardList robots={filteredRobots}/>
             </div>
