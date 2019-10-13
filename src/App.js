@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import CardList from './CardList';
 import SearchBox from './SearchBox';
-import { robots }  from './robots'; //This is using destructuring to destructure props. I need to learn destructuring.
 import './App.css';
 
 class App extends Component {
     constructor() {
         super()
         this.state = {
-            robots: robots,
+            robots: [],
             searchfield: '' //The search field is initially blank
         }
+    }
+
+    //Load user data from third party API
+    componentDidMount() {
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response=> response.json())
+            .then(users => {this.setState({ robots: users})});
     }
 
     //Function that fires whenever there is a chnage in the search form field
@@ -23,13 +29,17 @@ class App extends Component {
         const filteredRobots = this.state.robots.filter(robots => { //Built in javascript filter method is applied to the robots object, it takes one argument which is an arrow function.
             return robots.name.toLowerCase().includes(this.state.searchfield.toLowerCase()) //The arrow function returns any names in the robots object that contain the value typed in the search field.
         }) 
-        return (
-            <div className='tc'>
-                <h1 className='f2'>RoboFriends</h1> {/*className uses tachyons*/}
-                <SearchBox searchChange={this.onSearchChange}/> {/*onSearchChange function is passed as a prop to the SeachBox component*/}
-                <CardList robots={filteredRobots}/>
-            </div>
-        )
+        if (this.state.robots.length  === 0) {
+            return <h1>Loading...</h1>
+        }else {
+            return (
+                <div className='tc'>
+                    <h1 className='f2'>RoboFriends</h1> {/*className uses tachyons*/}
+                    <SearchBox searchChange={this.onSearchChange}/> {/*onSearchChange function is passed as a prop to the SeachBox component*/}
+                    <CardList robots={filteredRobots}/>
+                </div>
+            )
+        }
     }
 }
 
