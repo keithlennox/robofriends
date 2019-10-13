@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CardList from './CardList';
 import SearchBox from './SearchBox';
+import Scroll from './Scroll';
 import './App.css';
 
 class App extends Component {
@@ -13,7 +14,7 @@ class App extends Component {
     }
 
     //Load user data from third party API
-    componentDidMount() {
+    componentDidMount() { //This is part of React Lifecycle, need to learn that
         fetch('https://jsonplaceholder.typicode.com/users')
             .then(response=> response.json())
             .then(users => {this.setState({ robots: users})});
@@ -36,7 +37,9 @@ class App extends Component {
                 <div className='tc'>
                     <h1 className='f2'>RoboFriends</h1> {/*className uses tachyons*/}
                     <SearchBox searchChange={this.onSearchChange}/> {/*onSearchChange function is passed as a prop to the SeachBox component*/}
-                    <CardList robots={filteredRobots}/>
+                    <Scroll>
+                        <CardList robots={filteredRobots}/>
+                    </Scroll>
                 </div>
             )
         }
