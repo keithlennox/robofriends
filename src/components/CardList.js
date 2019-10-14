@@ -2,6 +2,9 @@ import React from 'react';
 import Card from './Card';
 
 const CardList = ({ robots }) => { //This is using destructuring to destructure props. I need to learn destructuring.
+    // if (true) { //Use this to test ErrorBoundry
+    //     throw new Error('Nooooooooo!');
+    // }
     return (
         <div>
             {
