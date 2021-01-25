@@ -7,7 +7,7 @@ const SearchBox = ({ searchChange }) => { //The onSearchChange function is retri
                 className='pa3 ba b--green bg-lightest-blue' //These are tachyons package values
                 type='search' 
                 placeholder='search robots' 
-                onChange={searchChange} //The onSearchChange function is used as the value for the HTML onChange event handler
+                onChange={searchChange} //The onSearchChange function that was passed down as a prop from App.js is called whenever the contents of the search field changes
             />
         </div>
     )

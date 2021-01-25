@@ -1,3 +1,5 @@
+//Component that wraps it's children in a scrollable div
+
 import React from 'react';
 
 const Scroll = (props) => {
